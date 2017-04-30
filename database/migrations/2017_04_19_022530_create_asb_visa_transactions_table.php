@@ -18,7 +18,7 @@ class CreateAsbVisaTransactionsTable extends Migration
             $table->timestamps();
             $table->date('date_processed');
             $table->date('date_of_transaction');
-            $table->integer('unique_id');
+            $table->integer('unique_id')->unique();
             $table->string('tran_type');
             $table->text('reference');
             $table->text('description');

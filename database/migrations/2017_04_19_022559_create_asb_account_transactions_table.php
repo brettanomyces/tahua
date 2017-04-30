@@ -17,7 +17,7 @@ class CreateAsbAccountTransactionsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->date('date');
-            $table->integer('unique_id');
+            $table->integer('unique_id')->unique();
             $table->string('tran_type');
             $table->integer('cheque_number');
             $table->text('payee');
