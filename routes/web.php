@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::post('/import', 'ImportController@import');
+
+Route::get('/transactions', TransactionController::class . '@index');

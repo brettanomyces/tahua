@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Transaction;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -13,7 +14,9 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::all();
+
+        return response()->json($transactions);
     }
 
     /**
@@ -21,9 +24,17 @@ class TransactionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $this->validate($request, [
+            'date' => 'required',
+            'amount' => 'required',
+            'description' => 'string'
+        ]);
+
+        $transaction = Transaction::create($request->all());
+
+        return response()->json($transaction);
     }
 
     /**
@@ -45,7 +56,13 @@ class TransactionController extends Controller
      */
     public function show($id)
     {
-        //
+        $transaction = Transaction::find($id);
+
+        if (! $transaction) {
+            abort(404);
+        }
+
+        return response()->json($transaction);
     }
 
     /**

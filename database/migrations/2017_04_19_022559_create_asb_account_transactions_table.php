@@ -13,7 +13,7 @@ class CreateAsbAccountTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('asb_account_transactions', function (Blueprint $table) {
+        Schema::create('asb_account_records', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->date('date');
@@ -34,5 +34,6 @@ class CreateAsbAccountTransactionsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('asb_account_transactions');
+        Schema::dropIfExists('asb_account_records');
     }
 }

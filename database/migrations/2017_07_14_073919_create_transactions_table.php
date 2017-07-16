@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAsbVisaTransactionsTable extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateAsbVisaTransactionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('asb_visa_records', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->date('date_processed');
-            $table->date('date_of_transaction');
-            $table->integer('unique_id')->unique();
-            $table->string('tran_type');
-            $table->text('reference');
+            $table->date('date');
             $table->text('description');
             $table->float('amount');
+            $table->string('record_type');
+            $table->integer('record_id');
         });
     }
 
@@ -33,7 +31,6 @@ class CreateAsbVisaTransactionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asb_visa_transactions');
-        Schema::dropIfExists('asb_visa_records');
+        Schema::dropIfExists('transactions');
     }
 }
