@@ -7,23 +7,6 @@ use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $transactions = Transaction::all();
-
-        return response()->json($transactions);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
         $this->validate($request, [
@@ -37,24 +20,7 @@ class TransactionController extends Controller
         return response()->json($transaction);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function retrieve(Request $request, $id)
     {
         $transaction = Transaction::find($id);
 
@@ -65,37 +31,36 @@ class TransactionController extends Controller
         return response()->json($transaction);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function retrieveAll(Request $request)
     {
-        //
+        $transactions = Transaction::all();
+        return response()->json($transactions);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $transaction = Transaction::find($id);
+
+        if (! $transaction) {
+            abort(404);
+        }
+
+        $transaction->fill($request->all());
+        $transaction->save();
+
+        return response()->json($transaction);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function delete($id)
     {
-        //
+        $transaction = Transaction::find($id);
+
+        if (! $transaction) {
+            abort(404);
+        }
+
+        $transaction->delete();
+
+        return response(null, 204);
     }
 }

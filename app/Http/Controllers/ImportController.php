@@ -71,7 +71,7 @@ class ImportController extends Controller
                 $transaction = Transaction::create([
                     'date' => $record['date'],
                     'amount' => $record['amount'],
-                    'description' => $record['memo'],
+                    'description' => $record['payee'] . '/' . $record['memo'],
                 ]);
 
                 $transaction->record()->associate($record);
