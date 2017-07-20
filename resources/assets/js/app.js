@@ -7,7 +7,10 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import VueRouter  from 'vue-router'
+import Vue from 'vue'
+
+Vue.use(VueRouter);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,8 +18,19 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('transactions', require('./components/Transactions.vue'));
+const transactions = Vue.component('transactions', require('./components/Transactions.vue'));
+const transaction = Vue.component('transaction', require('./components/Transaction.vue'));
+
+const router = new VueRouter({
+    routes: [
+        { path: '/', component: transactions },
+        { path: '/transaction', component: transaction },
+        { path: '/transactions', component: transactions },
+    ]
+});
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router
 });
+

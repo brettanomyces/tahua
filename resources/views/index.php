@@ -6,7 +6,7 @@
 
 <body>
     <div id="app">
-        <transactions></transactions>
+        <router-view></router-view>
     </div>
 
     <script>
