@@ -12,8 +12,14 @@
             <tbody>
                 <tr v-for="transaction in transactions">
                     <td>{{transaction.date}}</td>
-                    <td><router-link v-bind:to="{path: 'transaction'}">{{transaction.description}}</router-link></td>
-                    <td>{{transaction.amount}}</td>
+                    <td>
+                        <router-link v-bind:to="{path: 'transaction/' + transaction.id}">
+                            {{transaction.description}}
+                        </router-link>
+                    </td>
+                    <td>
+                        {{parseFloat(transaction.amount).toFixed(2)}}
+                    </td>
                     <td>{{transaction.tags}}</td>
                 </tr>
             </tbody>

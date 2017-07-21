@@ -18,13 +18,15 @@ Vue.use(VueRouter);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+const dataImport = Vue.component('transactions', require('./components/DataImport.vue'));
 const transactions = Vue.component('transactions', require('./components/Transactions.vue'));
 const transaction = Vue.component('transaction', require('./components/Transaction.vue'));
 
 const router = new VueRouter({
     routes: [
         { path: '/', component: transactions },
-        { path: '/transaction', component: transaction },
+        { path: '/import', component: dataImport},
+        { path: '/transaction/:transactionId', component: transaction},
         { path: '/transactions', component: transactions },
     ]
 });

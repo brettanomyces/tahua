@@ -21,6 +21,7 @@ Route::post('/import', 'ImportController@import');
 
 Route::get('/transactions', TransactionController::class . '@retrieveAll');
 Route::post('/transactions', TransactionController::class . '@create');
+Route::get('/transactions/{transactionId}', TransactionController::class . '@retrieve');
 Route::put('/transactions/{transactionId}', TransactionController::class . '@update');
 Route::delete('/transactions/{transactionId}', TransactionController::class . '@delete');
 
