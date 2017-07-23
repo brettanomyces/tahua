@@ -30,7 +30,8 @@ Route::post('/transactions/{transactionId}/tags', TransactionController::class .
 Route::put('/transactions/{transactionId}/tags/{tagId}', TransactionController::class . '@update');
 Route::delete('/transactions/{transactionId}/tags/{tagId}', TransactionController::class . '@delete');
 
-Route::get('/tags', TagController::class . '@index');
+Route::get('/tags', TagController::class . '@retrieveAll');
 Route::post('/tags', TagController::class . '@create');
-Route::put('/tags/{id}', TagController::class . '@update');
-Route::delete('/tags/{id}', TagController::class . '@delete');
+Route::post('/tags/{tagId}', TagController::class . '@retrieve');
+Route::put('/tags/{tagId}', TagController::class . '@update');
+Route::delete('/tags/{tagId}', TagController::class . '@delete');

@@ -22,7 +22,7 @@ class TransactionController extends Controller
 
     public function retrieve(Request $request, $id)
     {
-        $transaction = Transaction::find($id);
+        $transaction = Transaction::with('record')->find($id);
 
         if (! $transaction) {
             abort(404);

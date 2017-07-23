@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tag;
+use Illuminate\Http\Request;
 
 class TagController extends Controller
 {
@@ -31,7 +32,14 @@ class TagController extends Controller
 
     public function retrieveAll(Request $request)
     {
-        $tags = Tag::all();
+        $query = Tag::select('*');
+
+        if ($request->has('q')) {
+            $query->where('name', 'like', "%{$request->get('q')}%");
+        }
+
+        $tags = $query->get();
+
         return response()->json($tags);
     }
 
