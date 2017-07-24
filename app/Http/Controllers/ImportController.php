@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ImportController extends Controller
 {
-    public function import(Request $request)
+    public function upload(Request $request)
     {
         $this->validate($request, [
             'upload' => 'required'

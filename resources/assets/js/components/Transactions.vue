@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
         <table v-if="transactions && transactions.length" class="table">
             <thead>
                 <tr>
